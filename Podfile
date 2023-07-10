@@ -7,6 +7,5 @@ target 'CertificationDemo' do
 
   # Pods for CertificationDemo
    pod 'SideMenu'
-   pod 'RAMAnimatedTabBarController'
 
 end

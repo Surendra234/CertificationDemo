@@ -2,7 +2,7 @@
 //  LoginPageViewController.swift
 //  CertificationDemo
 //
-//  Created by XP India on 07/07/23.
+//  Created by Surendra Mahawar on 07/07/23
 //
 
 import UIKit
@@ -46,12 +46,26 @@ class LoginPageViewController: UIViewController {
 
         configureUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
 
     // MARK: - Selectors
     @objc private func handleLoginButton() {
-        let navVC = TabbarController()
-        navVC.modalPresentationStyle = .fullScreen
-        self.present(navVC, animated: true)
+        if emailTextField.text?.lowercased() == "surendra@yopmail.com" && passwordTextField.text?.lowercased() == "xp@12345678" {
+            let navVC = TabbarController()
+            navVC.modalPresentationStyle = .fullScreen
+            self.present(navVC, animated: true)
+        }
+        else {
+            let alert = UIAlertController(title: "Login Failed", message: "Please enter correct details", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "ok", style: .default))
+            self.present(alert, animated: true)
+        }
     }
 
     // MARK: - Helpers

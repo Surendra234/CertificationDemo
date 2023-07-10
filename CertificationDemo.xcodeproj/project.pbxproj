@@ -122,10 +122,10 @@
 		7072A38A2A57D30D00CF136B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7072A3AC2A57F19200CF136B /* TabBar */,
-				7072A3BA2A57F98100CF136B /* SideMenu */,
 				7072A3912A57D50100CF136B /* LoginPage */,
 				7072A3AB2A57EB9C00CF136B /* HomePage */,
+				7072A3AC2A57F19200CF136B /* TabBar */,
+				7072A3BA2A57F98100CF136B /* SideMenu */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

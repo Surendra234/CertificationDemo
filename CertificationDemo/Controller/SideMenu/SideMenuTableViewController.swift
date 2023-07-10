@@ -2,7 +2,7 @@
 //  SideMenuTableViewController.swift
 //  CertificationDemo
 //
-//  Created by XP India on 07/07/23.
+//  Created by Surendra Mahawar on 07/07/23.
 //
 
 protocol MenuControllerDelegate {
@@ -59,7 +59,6 @@ class SideMenuTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedtem = menuItems[indexPath.row]
         delegate?.didSelectenuItem(name: selectedtem)
-        print(selectedtem)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
