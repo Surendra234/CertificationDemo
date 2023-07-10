@@ -10,10 +10,11 @@ import UIKit
 class CustomButton: UIButton {
 
     // MARK: - initilizer
-    init(title: String, size: CGFloat, cornerRadius: CGFloat, backgroundColor: UIColor, tintColor: UIColor, titleColor: UIColor? = .black) {
+    init(title: String, size: CGFloat, cornerRadius: CGFloat, backgroundColor: UIColor, tintColor: UIColor, titleColor: UIColor? = .black, sysImageName: String? = "") {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor ?? .black, for: .normal)
+        self.setImage(UIImage(systemName: sysImageName ?? ""), for: .normal)
         self.titleLabel?.font = UIFont.init(name: "Avenir Next", size: size)
         self.clipsToBounds = true
         self.layer.cornerRadius = cornerRadius

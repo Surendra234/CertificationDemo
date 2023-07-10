@@ -10,10 +10,11 @@ import UIKit
 class LoginPageViewController: UIViewController {
 
     // MARK: - Properties
-
+    private var isSecureText: Bool = true
+    
     /// Labels
     private let instantSupplyChainLabel: UILabel = CustomLabel(text: "2019 © Instant Supply Chain Solution Private Limited", alignment: .center)
-   
+    
     /// Images views
     private let xpIndiaLogo: UIImageView = CustomImageView(name: "logo_xp")
     private let emailIcon: UIImageView = SystemImageView(name: "envelope", color: .black)
@@ -22,39 +23,40 @@ class LoginPageViewController: UIViewController {
     /// Textfields
     private let emailTextField: UITextField = CustomTextField(placeholder: "Enter your email id")
     private let passwordTextField: UITextField = CustomTextField(placeholder: "Enter your password", isSecureTextEntry: true)
-
-    /// Views
-    private lazy var emailTextView: UIView = CustomView(imageView: emailIcon, textField: emailTextField, color: .black)
-    private lazy var passwordTextView: UIView = CustomView(imageView: passwordIcon, textField: passwordTextField, color: .black)
     
     /// Buttons
-    private let eyeIcon: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
-        button.tintColor = UIColor.black.withAlphaComponent(0.6)
-        return button
-    }()
+    private lazy var eyeIcon: UIButton = CustomButton(title: "", size: .zero, cornerRadius: 0, backgroundColor: .clear, tintColor: .black.withAlphaComponent(0.5), sysImageName: "eye.slash.fill")
 
     private let loginButton: UIButton = CustomButton(title: "Login", size: 20, cornerRadius: 8, backgroundColor: .black, tintColor: .white, titleColor: .white)
     private let singUpButton: UIButton = CustomButton(title: "Sing Up", size: 20, cornerRadius: 8, backgroundColor: .black, tintColor: .white, titleColor: .white)
     private let forgetPasswordButton: UIButton = CustomButton(title: "Forget Password?", size: 14, cornerRadius: 0, backgroundColor: .white, tintColor: .systemBlue, titleColor: .systemBlue)
 
+    /// Views
+    private lazy var emailTextView: UIView = CustomView(imageView: emailIcon, textField: emailTextField, color: .black)
+    private lazy var passwordTextView: UIView = CustomView(imageView: passwordIcon, textField: passwordTextField, color: .black, rightButton: eyeIcon)
+
 
     // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        configureUI()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        configureUI()
     }
 
     // MARK: - Selectors
+    
+    @objc private func handleEyeIconButton() {
+        if isSecureText {
+            eyeIcon.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            passwordTextField.isSecureTextEntry = false
+            isSecureText = false
+        } else {
+            eyeIcon.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+            isSecureText = true
+        }
+    }
+    
     @objc private func handleLoginButton() {
         if emailTextField.text?.lowercased() == "surendra@yopmail.com" && passwordTextField.text?.lowercased() == "xp@12345678" {
             let navVC = TabbarController()
@@ -73,6 +75,9 @@ class LoginPageViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
 
+        emailTextField.text = ""; passwordTextField.text = "" ; isSecureText = true     //clear text after logout
+        eyeIcon.addTarget(self, action: #selector(handleEyeIconButton), for: .touchUpInside)    // add target to eye button
+        
         view.addSubview(xpIndiaLogo)
         xpIndiaLogo.centerX(inView: view)
         xpIndiaLogo.anchor(top:view.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
@@ -81,10 +86,6 @@ class LoginPageViewController: UIViewController {
         view.addSubview(emailTextView)
         emailTextView.anchor(top: xpIndiaLogo.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingRight: 20, height: 50)
         
-        passwordTextView.addSubview(eyeIcon)
-        eyeIcon.centerY(inView: passwordTextView)
-        eyeIcon.anchor(right: passwordTextView.rightAnchor, paddingRight: 5, width: 28, height: 24)
-
         view.addSubview(passwordTextView)
         passwordTextView.anchor(top: emailTextView.bottomAnchor, left: emailTextView.leftAnchor, right: emailTextView.rightAnchor, paddingTop: 30)
         passwordTextView.setheights(height: 50)
