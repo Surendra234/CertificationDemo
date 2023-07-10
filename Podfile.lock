@@ -1,0 +1,20 @@
+PODS:
+  - RAMAnimatedTabBarController (5.2.0)
+  - SideMenu (6.5.0)
+
+DEPENDENCIES:
+  - RAMAnimatedTabBarController
+  - SideMenu
+
+SPEC REPOS:
+  trunk:
+    - RAMAnimatedTabBarController
+    - SideMenu
+
+SPEC CHECKSUMS:
+  RAMAnimatedTabBarController: 6863a386e7ae2ab227cd60aa73ab8ff56cdacfdd
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+
+PODFILE CHECKSUM: bc5958b527efb5f077eb93f0dc479f3a3fd5ced2
+
+COCOAPODS: 1.11.3
