@@ -41,6 +41,7 @@ class LoginPageViewController: UIViewController {
         super.viewWillAppear(animated)
         
         configureUI()
+        initializeHideKeyboard()
     }
 
     // MARK: - Selectors

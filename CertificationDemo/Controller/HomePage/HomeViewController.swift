@@ -18,15 +18,11 @@ class HomeViewController: BaseClassViewController {
         super.viewDidLoad()
         
         configreUI()
-        configureTableView()
     }
     
     // MARK: - Helpers
     private func configreUI() {
         self.navigationItem.title = "Home"
-    }
-    
-    private func  configureTableView() {
         view.addSubview(homeTable)
         homeTable.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingLeft: 10, paddingRight: 10)
         
